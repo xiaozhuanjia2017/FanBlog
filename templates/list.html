@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <title>列表</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+<div class="container">
+    <header>
+        <!-- Header -->
+        <div style="height: 30px;font-size: 12px;line-height: 30px;padding-left: 28px;">
+            欢迎来到 凡老师技术知识分享平台！
+        </div>
+    </header>
+    <div style="margin: 28px 0px;"></div>
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link" href="/">首页</a>
+        </li>
+        {% for menu in menus %}
+            <li class="nav-item">
+                <a class="nav-link {% if tid == menu.id %} active {% endif %}"
+                   href="/list?tid={{ menu.id }}">{{ menu.name }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <div>
+
+        {% for blog in page.data %}
+            <div class="list-group">
+                <a href="/info?bid={{ blog.id }}" class="list-group-item list-group-item-action">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">{{ blog.title }}</h5>
+                        <small>{{ blog.created }}</small>
+                    </div>
+                    <p class="mb-1">文章的简单介绍</p>
+                    <small>浏览量：{{ blog.cat }}</small>
+                </a>
+            </div>
+            <div style="clear: both"></div>
+        {% empty %}
+            <div style="height: 500px">
+                <h1 align="center" style="margin-top: 200px;">暂无内容</h1>
+            </div>
+        {% endfor %}
+        {% if page.totalnum > 1 %}
+            <ul class="pagination">
+                <li class="page-item"><a class="page-link" href="/list?page={{ page.pre_num }}&tid={{ tid }}">上一页</a></li>
+                <li class="page-item" style="line-height: 38px">第{{ page.cur_num }}/{{ page.totalnum }} 页</li>
+                <li class="page-item"><a class="page-link" href="/list?page={{ page.next_num }}&tid={{ tid }}">下一页</a></li>
+            </ul>
+        {% endif %}
+    </div>
+</div>
+<div style="clear: both;"></div>
+<div style="text-align: center; background-color: #686868;color: #F7F7F7;font-size: 12px;padding: 12px 0px;">
+    <div>友情链接:</div>
+    <div>凡老师技术博客</div>
+</div>
+<script src="/static/js/jquery-3.4.1.js"></script>
+<script src="/static/js/bootstrap.js"></script>
+</body>
+</html>

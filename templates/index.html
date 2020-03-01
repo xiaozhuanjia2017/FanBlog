@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <title>首页</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+<div class="container">
+    <header>
+        <!-- Header -->
+        <div style="height: 30px;font-size: 12px;line-height: 30px;padding-left: 28px;">
+            欢迎来到 凡老师技术知识分享平台！
+        </div>
+    </header>
+    <h1 style="margin: 12px 0px;" align="center">温故而知新</h1>
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img class="d-block w-100" src="/static/img/slide01.jpg" alt="First slide">
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" src="/static/img/slide02.jpg" alt="Second slide">
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" src="/static/img/slide03.jpg" alt="Third slide">
+            </div>
+        </div>
+    </div>
+    <div style="margin: 28px 0px;"></div>
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link active" href="/">首页</a>
+        </li>
+        {% for menu in menus %}
+            <li class="nav-item">
+                <a class="nav-link" href="/list?tid={{ menu.id }}">{{ menu.name }}</a>
+            </li>
+        {% endfor %}
+
+
+        {#        <li class="nav-item">#}
+        {#            <a class="nav-link active" href="#">软件编程</a>#}
+        {#        </li>#}
+
+    </ul>
+    <div>
+        {% for data in datalist %}
+            <p style="margin-top: 30px;font-size: 22px;">{{ data.menu.name }}
+                <a href="/list?tid={{ data.menu.id }}" style="float: right;font-size: 18px;">更多</a></p>
+            {% if data.blogs.count == 0 %}
+
+                <h1 align="center" style="margin: 30px 0px">暂时无内容</h1>
+            {% else %}
+
+
+                {% for blog in data.blogs %}
+                    <div>
+                        <div class="card" style="width: 18rem;float: left;margin: 20px 30px;">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ blog.title }}</h5>
+                                <p class="card-text" style="font-size: 14px">{{ blog.desc | truncatechars:50}}</p>
+                                <a href="/info?bid={{ blog.id }}" class="btn btn-primary" style="font-size: 12px">去查看</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+            <div style="clear: both"></div>
+
+        {% endfor %}
+
+
+    </div>
+</div>
+<div style="clear: both;"></div>
+<div style="text-align: center; background-color: #686868;color: #F7F7F7;font-size: 12px;padding: 12px 0px;">
+    <div>友情链接:</div>
+    <div>凡老师技术博客</div>
+</div>
+<script src="/static/js/jquery-3.4.1.js"></script>
+<script src="/static/js/bootstrap.js"></script>
+</body>
+</html>
