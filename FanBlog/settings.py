@@ -22,9 +22,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'dq*#w!0=09-^&i@@c$ql1ydbe&f!wsn^z--(^x8v0eh_h9-e&&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -77,10 +77,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': "myblog",
-        'HOST': "localhost",
+        'HOST': "127.0.0.1",
         'PORT': 3306,
         'USER': "root",
-        "PASSWORD": "123456"
+        "PASSWORD": "fan_1234"
     }
 }
 
